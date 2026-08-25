@@ -56,7 +56,7 @@ tab1, tab2, tab3, tab4 = st.tabs([
     "👥 Gestionar Directori"
 ])
 
-# --- PESTAÑA 1: RESUMEN VISUAL PRÁCTICO ---
+# --- PESTAÑA 1: RESUMEN VISUAL POR TARJETAS COLOREADAS ---
 with tab1:
     st.subheader("Assignació Diumenge")
     if not df_plan.empty:
@@ -68,41 +68,40 @@ with tab1:
             st.markdown(f"### Culte: {row_data['Culto / Nota']} ({selected_date.strftime('%d/%m/%Y')})")
             st.markdown("---")
             
-            # Distribución en columnas visuales en forma de tarjetas
             col1, col2 = st.columns(2)
             
             with col1:
-                st.markdown("#### 🚪 Benvinguda")
-                b_col1, b_col2 = st.columns(2)
-                with b_col1:
-                    st.metric(label="Porta 1", value=row_data['Puerta 1'] or "-")
-                    st.metric(label="Entrada 1", value=row_data['Entrada 1'] or "-")
-                with b_col2:
-                    st.metric(label="Porta 2", value=row_data['Puerta 2'] or "-")
-                    st.metric(label="Entrada 2", value=row_data['Entrada 2'] or "-")
+                # Tarjeta de Benvinguda (Azul / Info)
+                with st.container():
+                    st.info(f"""### 🚪 Benvinguda
+**Porta 1:** {row_data['Puerta 1'] or '-'}  
+**Porta 2:** {row_data['Puerta 2'] or '-'}  
+**Entrada 1:** {row_data['Entrada 1'] or '-'}  
+**Entrada 2:** {row_data['Entrada 2'] or '-'}  
+""")
                 
-                st.markdown("#### 📖 Direcció i Paraula")
-                p_col1, p_col2 = st.columns(2)
-                with p_col1:
-                    st.metric(label="Presidència", value=row_data['Presidencia'] or "-")
-                with p_col2:
-                    st.metric(label="Predicació", value=row_data['Predicación'] or "-")
+                # Tarjeta de Direcció i Paraula (Verde / Success)
+                with st.container():
+                    st.success(f"""### 📖 Direcció i Paraula
+**Presidència:** {row_data['Presidencia'] or '-'}  
+**Predicació:** {row_data['Predicación'] or '-'}  
+""")
                 
             with col2:
-                st.markdown("#### 🎵 Tècnica i Música")
-                t_col1, t_col2 = st.columns(2)
-                with t_col1:
-                    st.metric(label="Alabança", value=row_data['Alabanza'] or "-")
-                    st.metric(label="Projecció", value=row_data['Proyección'] or "-")
-                with t_col2:
-                    st.metric(label="So", value=row_data['Sonido'] or "-")
+                # Tarjeta de Tècnica i Música (Amarillo/Naranja / Warning)
+                with st.container():
+                    st.warning(f"""### 🎵 Tècnica i Música
+**Alabança:** {row_data['Alabanza'] or '-'}  
+**So:** {row_data['Sonido'] or '-'}  
+**Projecció:** {row_data['Proyección'] or '-'}  
+""")
                 
-                st.markdown("#### 🍞 Ordenances i Ofrena")
-                o_col1, o_col2 = st.columns(2)
-                with o_col1:
-                    st.metric(label="Santa Cena", value=f"{row_data['Santa Cena 1'] or '-'}, {row_data['Santa Cena 2'] or '-'}, {row_data['Santa Cena 3'] or '-'}")
-                with o_col2:
-                    st.metric(label="Ofrena", value=f"{row_data['Ofrenda 1'] or '-'}, {row_data['Ofrenda 2'] or '-'}")
+                # Tarjeta de Ordenances i Ofrena (Rojo / Error)
+                with st.container():
+                    st.error(f"""### 🍞 Ordenances i Ofrena
+**Santa Cena:** {row_data['Santa Cena 1'] or '-'}, {row_data['Santa Cena 2'] or '-'}, {row_data['Santa Cena 3'] or '-'}  
+**Ofrena:** {row_data['Ofrenda 1'] or '-'}, {row_data['Ofrenda 2'] or '-'}  
+""")
     else:
         st.warning("No hi ha dades a la planificació.")
 
