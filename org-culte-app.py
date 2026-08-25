@@ -25,7 +25,6 @@ def load_wb_data():
     ]
     df_plan = pd.DataFrame(plan_data, columns=headers_plan)
     
-    # Asegurar formato datetime para las fechas
     if not df_plan.empty:
         df_plan["Fecha"] = pd.to_datetime(df_plan["Fecha"], errors="coerce")
     
@@ -61,7 +60,6 @@ tab1, tab2, tab3, tab4 = st.tabs([
 with tab1:
     st.subheader("Assignació Diumenge")
     if not df_plan.empty:
-        # Extraer fechas únicas ordenadas
         dates_list = sorted(df_plan["Fecha"].dropna().dt.date.unique())
         selected_date = st.selectbox("Selecciona la data del culte:", dates_list, key="resumen_date")
         
@@ -89,7 +87,7 @@ with tab1:
                 
                 st.markdown("#### 🍞 Ordenances i Ofrena")
                 st.error(f"""**Santa Cena:** {row_data['Santa Cena 1'] or '-'}, {row_data['Santa Cena 2'] or '-'}, {row_data['Santa Cena 3'] or '-'}
-**Ofrena:** {row_data['Ofrenda 1'] or '-'}, {row_data['Ofrenda 2'] or '-'}")
+**Ofrena:** {row_data['Ofrenda 1'] or '-'}, {row_data['Ofrenda 2'] or '-'}""")
     else:
         st.warning("No hi ha dades a la planificació.")
 
@@ -97,7 +95,6 @@ with tab1:
 with tab2:
     st.subheader("Assignació de Voluntaris per Culte")
     
-    # Sección para crear un nuevo culto mediante calendario
     with st.expander("➕ Crear un nou culte en una altra data"):
         with st.form("form_create_culte"):
             new_culte_date = st.date_input("Selecciona la data del nou culte")
@@ -107,7 +104,6 @@ with tab2:
             if btn_create:
                 wb_c = openpyxl.load_workbook(EXCEL_FILE)
                 ws_c = wb_c["Planificación"]
-                # Buscar primera fila vacía
                 next_r = 5
                 while ws_c.cell(row=next_r, column=1).value is not None:
                     next_r += 1
