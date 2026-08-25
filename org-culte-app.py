@@ -49,10 +49,10 @@ df_plan, vol_dict = load_wb_data()
 st.title("⛪ Ordre Culte EEBM")
 st.markdown("Aplicació web interactiva per a la coordinació del servei dominical.")
 
-tab1, tab2, tab3, tab4 = st.tabs([
+# Modificación: Solo 3 pestañas
+tab1, tab2, tab3 = st.tabs([
     "📊 Resum per Culte", 
     "✏️ Assignar / Editar Culte", 
-    "📅 Planificació General", 
     "👥 Gestionar Directori"
 ])
 
@@ -210,13 +210,9 @@ with tab2:
                     st.success("¡Assignació actualitzada correctament! Recarrega la pàgina.")
         wb_edit.close()
 
-# --- PESTAÑA 3: PLANIFICACIÓN GENERAL ---
-with tab3:
-    st.subheader("Taula Completa de Planificació")
-    st.dataframe(df_plan, use_container_width=True)
 
-# --- PESTAÑA 4: GESTIÓN DE DIRECTORIO DE VOLUNTARIOS ---
-with tab4:
+# --- PESTAÑA 3: GESTIÓN DE DIRECTORIO DE VOLUNTARIOS ---
+with tab3:
     st.subheader("Directori de Voluntaris per Àrea")
     st.markdown("Afegeix o elimina voluntaris de forma ràpida.")
     
