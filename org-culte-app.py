@@ -5,7 +5,7 @@ from datetime import datetime
 
 st.set_page_config(page_title="Gestión de Voluntarios - Iglesia Bautista", page_icon="⛪", layout="wide")
 
-EXCEL_FILE = "planificacion_voluntarios_culto.xlsx"
+EXCEL_FILE = "planificacion.xlsx"
 
 @st.cache_data
 def load_data():
