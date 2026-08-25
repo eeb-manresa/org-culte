@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 import openpyxl
@@ -53,7 +52,6 @@ with tab1:
     st.subheader("Informe Ejecutivo del Domingo")
     
     if not df_plan.empty:
-        # Date selector
         dates_list = df_plan["Fecha"].dropna().tolist()
         selected_date = st.selectbox("Selecciona la fecha del culto:", dates_list)
         
@@ -66,31 +64,24 @@ with tab1:
             
             with col1:
                 st.markdown("#### 🚪 Bienvenida y Acceso")
-                st.info(f"**Puerta 1:** {row_data['Puerta 1'] or '-'}
-
+                st.info(f"""**Puerta 1:** {row_data['Puerta 1'] or '-'}
 **Puerta 2:** {row_data['Puerta 2'] or '-'}
-
 **Entrada 1:** {row_data['Entrada 1'] or '-'}
-
-**Entrada 2:** {row_data['Entrada 2'] or '-'}")
+**Entrada 2:** {row_data['Entrada 2'] or '-'}""")
                 
                 st.markdown("#### 📖 Dirección y Palabra")
-                st.success(f"**Presidencia:** {row_data['Presidencia'] or '-'}
-
-**Predicación:** {row_data['Predicación'] or '-'}")
+                st.success(f"""**Presidencia:** {row_data['Presidencia'] or '-'}
+**Predicación:** {row_data['Predicación'] or '-'}""")
                 
             with col2:
                 st.markdown("#### 🎵 Técnica y Música")
-                st.warning(f"**Alabanza:** {row_data['Alabanza'] or '-'}
-
+                st.warning(f"""**Alabanza:** {row_data['Alabanza'] or '-'}
 **Sonido:** {row_data['Sonido'] or '-'}
-
-**Proyección:** {row_data['Proyección'] or '-'}")
+**Proyección:** {row_data['Proyección'] or '-'}""")
                 
                 st.markdown("#### 🍞 Ordenanzas y Colecta")
-                st.error(f"**Santa Cena:** {row_data['Santa Cena 1'] or '-'}, {row_data['Santa Cena 2'] or '-'}, {row_data['Santa Cena 3'] or '-'}
-
-**Ofrenda:** {row_data['Ofrenda 1'] or '-'}, {row_data['Ofrenda 2'] or '-'}")
+                st.error(f"""**Santa Cena:** {row_data['Santa Cena 1'] or '-'}, {row_data['Santa Cena 2'] or '-'}, {row_data['Santa Cena 3'] or '-'}
+**Ofrenda:** {row_data['Ofrenda 1'] or '-'}, {row_data['Ofrenda 2'] or '-'}""")
     else:
         st.warning("No hay datos en la planificación.")
 
