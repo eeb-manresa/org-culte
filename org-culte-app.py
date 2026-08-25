@@ -49,7 +49,6 @@ df_plan, vol_dict = load_wb_data()
 st.title("⛪ Ordre Culte EEBM")
 st.markdown("Aplicació web interactiva per a la coordinació del servei dominical.")
 
-# Modificación: Solo 3 pestañas
 tab1, tab2, tab3 = st.tabs([
     "📊 Resum per Culte", 
     "✏️ Assignar / Editar Culte", 
@@ -91,7 +90,7 @@ with tab1:
                 # Tarjeta de Tècnica i Música (Amarillo/Naranja / Warning)
                 with st.container():
                     st.warning(f"""### 🎵 Tècnica i Música
-**Alabança:** {row_data['Alabanza'] or '-'}  
+**Lloança:** {row_data['Alabanza'] or '-'}  
 **So:** {row_data['Sonido'] or '-'}  
 **Projecció:** {row_data['Proyección'] or '-'}  
 """)
@@ -177,7 +176,7 @@ with tab2:
 
                 with col_b:
                     st.markdown("#### 🎵 Tècnica i Música")
-                    alab = st.selectbox("Alabança", l_alab, index=l_alab.index(ws_p.cell(row=target_row, column=9).value) if ws_p.cell(row=target_row, column=9).value in l_alab else 0)
+                    alab = st.selectbox("Lloança", l_alab, index=l_alab.index(ws_p.cell(row=target_row, column=9).value) if ws_p.cell(row=target_row, column=9).value in l_alab else 0)
                     son = st.selectbox("So", l_son, index=l_son.index(ws_p.cell(row=target_row, column=10).value) if ws_p.cell(row=target_row, column=10).value in l_son else 0)
                     proy = st.selectbox("Projecció", l_proy, index=l_proy.index(ws_p.cell(row=target_row, column=11).value) if ws_p.cell(row=target_row, column=11).value in l_proy else 0)
                     
